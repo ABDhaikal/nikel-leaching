@@ -89,9 +89,9 @@ class MQTTClient:
     def send_message(self, topic, payload):
         try:
             self.client.publish(topic, payload, qos=1)
-            print(f"  ▲ Kirim → {topic}: {payload}")
+            print(f"  [Kirim] -> {topic}: {payload}")
         except Exception as e:
-            print(f"❌ Gagal mengirim pesan: {e}")
+            print(f"[Error] Gagal mengirim pesan: {e}")
 
     def connect(self):
         print(f"Menghubungkan ke broker {self.broker}:{self.port} ...")
@@ -100,13 +100,13 @@ class MQTTClient:
             self.client.loop_start()
             time.sleep(1)
         except Exception as e:
-            print(f"❌ Tidak bisa terhubung ke broker: {e}")
+            print(f"[Error] Tidak bisa terhubung ke broker: {e}")
             print("Pastikan Mosquitto sudah berjalan di port 1883")
             exit(1)
 
     def on_connect(self, client, userdata, flags, rc):
         if rc == 0:
-            print("✅ Terhubung ke MQTT Broker!")
+            print("[OK] Terhubung ke MQTT Broker!")
             # Subscribe semua topic dari AVEVA
             client.subscribe(TOPIC_SETPOINT_SUHU_PREHEATER1)
             client.subscribe(TOPIC_SETPOINT_SUHU_PREHEATER2)

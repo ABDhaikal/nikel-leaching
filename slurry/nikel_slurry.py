@@ -10,7 +10,7 @@ def _clamp(value, min_value, max_value):
 	return max(min_value, min(value, max_value))
 
 
-def generate_slurry(
+def generate_nikel_slurry(
 	nickel_range=(0.8, 2.5),
 	iron_range=(6.0, 12.0),
 	cobalt_range=(0.05, 0.2),
@@ -60,7 +60,7 @@ def generate_slurry(
 if __name__ == "__main__":
 	try:
 		while True:
-			sample = generate_slurry()
+			sample = generate_nikel_slurry()
 			print(
 				"Slurry | "
 				f"Ni {sample['nickel_pct_solid']}% | "
